@@ -31,6 +31,7 @@
 #include "EPD_7in5_V2.h"
 #include <time.h> 
 
+
 int EPD_7in5_V2_test(void)
 {
     printf("EPD_7IN5_V2_test Demo\r\n");
@@ -98,47 +99,21 @@ int EPD_7in5_V2_test(void)
     }
 #endif
 
-/*
-    The feature will only be available on screens sold after 24/10/23
-*/
-#if 1 // show image for array
-    free(BlackImage);
-    printf("show Gray------------------------\r\n");
-    Imagesize = ((EPD_7IN5_V2_WIDTH % 4 == 0)? (EPD_7IN5_V2_WIDTH / 4 ): (EPD_7IN5_V2_WIDTH / 4 + 1)) * EPD_7IN5_V2_HEIGHT;
-    if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
-        printf("Failed to apply for black memory...\r\n");
-        return -1;
-    }
-    EPD_7IN5_V2_Init_4Gray();
-    printf("4 grayscale display\r\n");
-    Paint_NewImage(BlackImage, EPD_7IN5_V2_WIDTH, EPD_7IN5_V2_HEIGHT, 0, WHITE);
-    Paint_SetScale(4);
-    Paint_Clear(0xff);
-    
-    Paint_DrawPoint(10, 80, GRAY4, DOT_PIXEL_1X1, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 90, GRAY4, DOT_PIXEL_2X2, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 100, GRAY4, DOT_PIXEL_3X3, DOT_STYLE_DFT);
-    Paint_DrawLine(20, 70, 70, 120, GRAY4, DOT_PIXEL_1X1, LINE_STYLE_SOLID);
-    Paint_DrawLine(70, 70, 20, 120, GRAY4, DOT_PIXEL_1X1, LINE_STYLE_SOLID);
-    Paint_DrawRectangle(20, 70, 70, 120, GRAY4, DOT_PIXEL_1X1, DRAW_FILL_EMPTY);
-    Paint_DrawRectangle(80, 70, 130, 120, GRAY4, DOT_PIXEL_1X1, DRAW_FILL_FULL);
-    Paint_DrawCircle(45, 95, 20, GRAY4, DOT_PIXEL_1X1, DRAW_FILL_EMPTY);
-    Paint_DrawCircle(105, 95, 20, GRAY2, DOT_PIXEL_1X1, DRAW_FILL_FULL);
-    Paint_DrawLine(85, 95, 125, 95, GRAY4, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
-    Paint_DrawLine(105, 75, 105, 115, GRAY4, DOT_PIXEL_1X1, LINE_STYLE_DOTTED);
-    Paint_DrawString_EN(10, 0, "waveshare", &Font16, GRAY4, GRAY1);
-    Paint_DrawString_EN(10, 20, "hello world", &Font12, GRAY3, GRAY1);
-    Paint_DrawNum(10, 33, 123456789, &Font12, GRAY4, GRAY2);
-    Paint_DrawNum(10, 50, 987654321, &Font16, GRAY1, GRAY4);
-    Paint_DrawString_CN(150, 0,"���abc", &Font12CN, GRAY4, GRAY1);
-    Paint_DrawString_CN(150, 20,"���abc", &Font12CN, GRAY3, GRAY2);
-    Paint_DrawString_CN(150, 40,"���abc", &Font12CN, GRAY2, GRAY3);
-    Paint_DrawString_CN(150, 60,"���abc", &Font12CN, GRAY1, GRAY4);
-    Paint_DrawString_CN(10, 130, "΢ѩ����", &Font24CN, GRAY1, GRAY4);
-    EPD_7IN5_V2_Display_4Gray(BlackImage);
-    DEV_Delay_ms(3000);
+#if 1  // show bmp
+    printf("show window BMP-----------------\r\n");
+    Paint_SelectImage(BlackImage);
+    Paint_Clear(WHITE);
+    GUI_ReadBmp("./pic/2in13d.bmp", 0, 0);
+    EPD_7IN5_V2_Display(BlackImage);
+    DEV_Delay_ms(2000);
 
-#endif
+    printf("show bmp------------------------\r\n");
+    Paint_SelectImage(BlackImage);
+    Paint_Clear(WHITE);
+    GUI_ReadBmp("./pic/100x100.bmp", 0, 0);
+    EPD_7IN5_V2_Display(BlackImage);
+    DEV_Delay_ms(2000);
+#endif  
 
     printf("Clear...\r\n");
     EPD_7IN5_V2_Init();
