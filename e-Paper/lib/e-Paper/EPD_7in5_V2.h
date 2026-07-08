@@ -1,11 +1,11 @@
 /*****************************************************************************
-* | File      	:	EPD_7in5_B.h
+* | File      	:	EPD_7in5_V2.h
 * | Author      :   Waveshare team
 * | Function    :   Electronic paper driver
 * | Info        :
 *----------------
-* |	This version:   V2.0
-* | Date        :   2024-08-07
+* |	This version:   V3.0
+* | Date        :   2023-12-18
 * | Info        :   
 * 1.Remove:ImageBuff[EPD_HEIGHT * EPD_WIDTH / 8]
 * 2.Change:EPD_Display(UBYTE *Image)
@@ -30,25 +30,25 @@
 # THE SOFTWARE.
 #
 ******************************************************************************/
-#ifndef _EPD_7IN5B_V2_H_
-#define _EPD_7IN5B_V2_H_
+#ifndef _EPD_7IN5_V2_H_
+#define _EPD_7IN5_V2_H_
 
 #include "DEV_Config.h"
 
 
 // Display resolution
-#define EPD_7IN5B_V2_WIDTH       800
-#define EPD_7IN5B_V2_HEIGHT      480
+#define EPD_7IN5_V2_WIDTH       800
+#define EPD_7IN5_V2_HEIGHT      480
 
-UBYTE EPD_7IN5B_V2_Init(void);
-UBYTE EPD_7IN5B_V2_Init_Fast(void);
-UBYTE EPD_7IN5B_V2_Init_Part(void);
-void EPD_7IN5B_V2_Clear(void);
-void EPD_7IN5B_V2_ClearRed(void);
-void EPD_7IN5B_V2_ClearBlack(void);
-void EPD_7IN5B_V2_Display(const UBYTE *blackimage, const UBYTE *ryimage);
-void EPD_7IN5B_V2_Display_Fast(const UBYTE *blackimage);
-void EPD_7IN5B_V2_Display_Base_color(UBYTE color);
-void EPD_7IN5B_V2_Display_Partial(const UBYTE *Image, UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend);
-void EPD_7IN5B_V2_Sleep(void);
+UBYTE EPD_7IN5_V2_Init(void);
+UBYTE EPD_7IN5_V2_Init_Fast(void);
+UBYTE EPD_7IN5_V2_Init_Part(void);
+UBYTE EPD_7IN5_V2_Init_4Gray(void);
+void EPD_7IN5_V2_Clear(void);
+void EPD_7IN5_V2_ClearBlack(void);
+void EPD_7IN5_V2_Display(UBYTE *blackimage);
+void EPD_7IN5_V2_Display_Part(UBYTE *blackimage,UDOUBLE x_start, UDOUBLE y_start, UDOUBLE x_end, UDOUBLE y_end);
+void EPD_7IN5_V2_Display_4Gray(const UBYTE *Image);
+void EPD_7IN5_V2_Sleep(void);
+
 #endif
