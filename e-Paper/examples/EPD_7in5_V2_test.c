@@ -65,7 +65,7 @@ int EPD_7in5_V2_test(void)
     Paint_Clear(WHITE);
     GUI_ReadBmp("./pic/2in13d.bmp", 0, 0);
     EPD_7IN5_V2_Display(BlackImage);
-    DEV_Delay_ms(8000);
+    DEV_Delay_ms(2000);
 
     printf("show bmp------------------------\r\n");
     Paint_SelectImage(BlackImage);
