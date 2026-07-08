@@ -36,9 +36,9 @@ sudo apt-get install libcurl4-openssl-dev
 ### Run the Display
 
 ```bash
-cd ~/e-Paper/RaspberryPi_JetsonNano/c
+cd e-Paper/
 make clean
-make EPD=epd7in5V2
+make
 sudo ./epd
 ```
 
