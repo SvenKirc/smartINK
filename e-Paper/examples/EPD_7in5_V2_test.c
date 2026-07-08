@@ -101,7 +101,7 @@ int EPD_7in5_V2_test(void)
 /*
     The feature will only be available on screens sold after 24/10/23
 */
-#if 0 // show image for array
+#if 1 // show image for array
     free(BlackImage);
     printf("show Gray------------------------\r\n");
     Imagesize = ((EPD_7IN5_V2_WIDTH % 4 == 0)? (EPD_7IN5_V2_WIDTH / 4 ): (EPD_7IN5_V2_WIDTH / 4 + 1)) * EPD_7IN5_V2_HEIGHT;
